@@ -1,5 +1,7 @@
 # Alfred Text to Calendar
 
+https://user-images.githubusercontent.com/YOUR_USER_ID/YOUR_REPOSITORY/assets/YOUR_ASSET_ID/demo.mp4
+
 An Alfred workflow that uses AI to intelligently convert text into calendar events. Simply select text or type a command to create calendar events with natural language.
 
 ## Installation
@@ -36,6 +38,7 @@ An Alfred workflow that uses AI to intelligently convert text into calendar even
 ## Features
 - 📅 Convert any text into calendar events
 - 🤖 Uses an LLM to parse event details
+- ✨ Handles multiple events in a single text
 - ✈️ Special formatting for flight details (includes airport codes, terminals, gates)
 - 🌍 Automatic timezone handling based on location
 - 📝 Supports all-day events and detailed descriptions
