@@ -1,8 +1,9 @@
 # Alfred Text to Calendar
 
-![Demo: Convert text to calendar events](demo.gif)
+![Demo: Using selected text](demo.gif)
+![Demo: Using direct command](demo2.gif)
 
-An Alfred workflow that uses AI to intelligently convert text into calendar events. Simply select text or type a command to create calendar events with natural language.
+An [Alfred](https://www.alfredapp.com/) workflow that uses AI to intelligently convert text into calendar events. Simply select text or type a command to create calendar events with natural language.
 
 ## Installation
 1. Download `text-to-calendar.alfredworkflow`
