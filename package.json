@@ -1,0 +1,22 @@
+{
+  "name": "alfred-text-to-calendar",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node scripts/process-text.js",
+    "clean": "rm -rf node_modules",
+    "build": "npm install && zip -r text-to-calendar.alfredworkflow . -x '*.git*' '*.DS_Store' 'README.md' 'LICENSE' '.idea/*' '.husky/*'",
+    "package": "npm run clean && npm run build",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "ical-generator": "^5.0.0",
+    "openai": "^4.0.0",
+    "tmp-promise": "^3.0.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3"
+  }
+}

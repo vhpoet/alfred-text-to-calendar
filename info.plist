@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vhpoet.alfred-text-to-calendar</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>8841D36E-7A97-47B3-9E06-DDBA3384733F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BCEB0819-1CF6-4D0D-BED5-C94A0B049FF1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>E3FC09CE-1D3D-4E1E-9E58-99599CB42E6E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BCEB0819-1CF6-4D0D-BED5-C94A0B049FF1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>vhpoet</string>
+	<key>description</key>
+	<string>Convert text to calendar events using AI. Select text or type 'c' to add events.</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Text to Calendar</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>1</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>34</integer>
+				<key>hotmod</key>
+				<integer>1179648</integer>
+				<key>hotstring</key>
+				<string>I</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+				<key>dontautoclose</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>E3FC09CE-1D3D-4E1E-9E58-99599CB42E6E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/opt/local/bin:$PATH"
+node ./scripts/process-text.js "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>BCEB0819-1CF6-4D0D-BED5-C94A0B049FF1</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>c</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Add to Calendar</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>8841D36E-7A97-47B3-9E06-DDBA3384733F</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>This workflow uses AI to intelligently parse text and create calendar events.
+
+Configuration:
+- Set your OpenAI API key
+- You can change the AI model in the workflow configuration
+
+Usage:
+1. From Selected Text:
+   - Select any text containing event information
+   - Press ⌘+⌥+I (or your configured hotkey)
+
+2. Direct Command:
+   - Type 'c' followed by your event text
+   - Press Enter
+
+Examples:
+- "Lunch with John tomorrow at 12:30pm at Cafe Luna"
+- "Flight AA123 from SFO to JFK on Friday at 10am"
+- "Team meeting every Monday at 9am starting next week"</string>
+	<key>uidata</key>
+	<dict>
+		<key>8841D36E-7A97-47B3-9E06-DDBA3384733F</key>
+		<dict>
+			<key>xpos</key>
+			<real>305</real>
+			<key>ypos</key>
+			<real>340</real>
+		</dict>
+		<key>BCEB0819-1CF6-4D0D-BED5-C94A0B049FF1</key>
+		<dict>
+			<key>xpos</key>
+			<real>570</real>
+			<key>ypos</key>
+			<real>205</real>
+		</dict>
+		<key>E3FC09CE-1D3D-4E1E-9E58-99599CB42E6E</key>
+		<dict>
+			<key>xpos</key>
+			<real>305</real>
+			<key>ypos</key>
+			<real>205</real>
+		</dict>
+	</dict>
+	<key>variables</key>
+	<dict>
+		<key>OPENAI_API_KEY</key>
+		<string></string>
+		<key>OPENAI_MODEL</key>
+		<string>gpt-4o</string>
+	</dict>
+	<key>variablesdontexport</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string></string>
+				<key>placeholder</key>
+				<string>sk-...</string>
+				<key>required</key>
+				<true/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>Your OpenAI API key with GPT-4 access</string>
+			<key>label</key>
+			<string>OpenAI API Key</string>
+			<key>type</key>
+			<string>text</string>
+			<key>variable</key>
+			<string>OPENAI_API_KEY</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>gpt-4</string>
+				<key>placeholder</key>
+				<string>gpt-4</string>
+				<key>required</key>
+				<true/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>OpenAI model to use (e.g., gpt-4, gpt-3.5-turbo)</string>
+			<key>label</key>
+			<string>OpenAI Model</string>
+			<key>type</key>
+			<string>text</string>
+			<key>variable</key>
+			<string>OPENAI_MODEL</string>
+		</dict>
+	</array>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>https://github.com/vhpoet/alfred-text-to-calendar</string>
+</dict>
+</plist>
