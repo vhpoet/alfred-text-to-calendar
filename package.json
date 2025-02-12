@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node scripts/process-text.js",
     "clean": "rm -rf node_modules",
-    "build": "npm install && zip -r text-to-calendar.alfredworkflow . -x '*.git*' '*.DS_Store' 'README.md' 'LICENSE' '.idea/*' '.husky/*'",
-    "package": "npm run clean && npm run build",
+    "build": "yarn install && zip -r text-to-calendar.alfredworkflow . -x '*.git*' '*.DS_Store' 'README.md' 'LICENSE' '.idea/*' '.husky/*'",
+    "package": "yarn clean && yarn build",
     "prepare": "husky install"
   },
   "dependencies": {

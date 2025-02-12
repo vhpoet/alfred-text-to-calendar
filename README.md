@@ -53,14 +53,14 @@ Want to contribute? Great! Here's how:
 
 2. Install dependencies
    ```bash
-   npm install
+   yarn install
    ```
 
 3. Make your changes and test locally
 
 4. Build the workflow
    ```bash
-   npm run build
+   yarn build
    ```
    This will create a `text-to-calendar.alfredworkflow` file.
 
