@@ -1,6 +1,6 @@
 # Alfred Text to Calendar
 
-https://user-images.githubusercontent.com/YOUR_USER_ID/YOUR_REPOSITORY/assets/YOUR_ASSET_ID/demo.mp4
+![Demo: Convert text to calendar events](demo.gif)
 
 An Alfred workflow that uses AI to intelligently convert text into calendar events. Simply select text or type a command to create calendar events with natural language.
 
