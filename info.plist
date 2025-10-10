@@ -128,8 +128,7 @@ node ./scripts/process-text.js "$1"</string>
 	<string>This workflow uses AI to intelligently parse text and create calendar events.
 
 Configuration:
-- Set your OpenAI API key
-- You can change the AI model in the workflow configuration
+- Set your OpenAI API key (requires GPT-5 access)
 
 Usage:
 1. From Selected Text:
@@ -172,8 +171,6 @@ Examples:
 	<dict>
 		<key>OPENAI_API_KEY</key>
 		<string></string>
-		<key>OPENAI_MODEL</key>
-		<string>gpt-4o</string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
@@ -190,34 +187,13 @@ Examples:
 				<true/>
 			</dict>
 			<key>description</key>
-			<string>Your OpenAI API key with GPT-4 access</string>
+			<string>Your OpenAI API key with GPT-5 access</string>
 			<key>label</key>
 			<string>OpenAI API Key</string>
 			<key>type</key>
 			<string>text</string>
 			<key>variable</key>
 			<string>OPENAI_API_KEY</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>default</key>
-				<string>gpt-4</string>
-				<key>placeholder</key>
-				<string>gpt-4</string>
-				<key>required</key>
-				<true/>
-				<key>trim</key>
-				<true/>
-			</dict>
-			<key>description</key>
-			<string>OpenAI model to use (e.g., gpt-4, gpt-3.5-turbo)</string>
-			<key>label</key>
-			<string>OpenAI Model</string>
-			<key>type</key>
-			<string>text</string>
-			<key>variable</key>
-			<string>OPENAI_MODEL</string>
 		</dict>
 	</array>
 	<key>version</key>
