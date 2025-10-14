@@ -4,6 +4,7 @@ import ical from "ical-generator";
 import { file } from "tmp-promise";
 import { execFile } from "child_process";
 import { z } from "zod";
+import axios from "axios";
 
 // Retrieve and validate input text
 const input = process.argv[2]?.trim();
@@ -27,7 +28,34 @@ if (!OPENAI_API_KEY) {
   process.exit(1);
 }
 
+// Check for the Jina AI API key (required for URL processing)
+const JINA_API_KEY = process.env.JINA_API_KEY;
+
+if (isUrl && !JINA_API_KEY) {
+  console.error(
+    "Jina AI API key not found. Please set it in the workflow configuration."
+  );
+  process.exit(1);
+}
+
 const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
+
+// Function to fetch markdown from URL using Jina AI Reader API
+async function fetchMarkdownFromUrl(url) {
+  try {
+    const jinaUrl = `https://r.jina.ai/${url}`;
+    const response = await axios.get(jinaUrl, {
+      headers: {
+        Authorization: `Bearer ${JINA_API_KEY}`,
+        "X-Return-Format": "markdown",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching content from Jina AI:", error.message);
+    throw new Error(`Failed to fetch content from URL: ${error.message}`);
+  }
+}
 
 // Pricing (per 1M tokens)
 const PRICING = {
@@ -187,14 +215,15 @@ Title formatting for different types of events:
 - Hangout: Hang w/[Name]
 `;
 
-  const systemPrompt = isUrl
-    ? `Extract all event details from the webpage at the provided URL with strict adherence to the following rules.
-Today's date is: ${today}
+  // If input is a URL, fetch markdown content using Jina AI
+  let contentToProcess = input;
+  if (isUrl) {
+    console.error("Fetching content from URL using Jina AI...");
+    contentToProcess = await fetchMarkdownFromUrl(input);
+    console.error("Content fetched successfully");
+  }
 
-${jsonSchema}
-
-Instructions:${baseInstructions}`
-    : `Extract all event details from the provided content with strict adherence to the following rules.
+  const systemPrompt = `Extract all event details from the provided content with strict adherence to the following rules.
 Today's date is: ${today}
 
 ${jsonSchema}
@@ -203,16 +232,17 @@ Instructions:${baseInstructions}`;
 
   const apiConfig = {
     model: "gpt-5-mini",
-    input: `${systemPrompt}\n\nUser input: ${input}`,
+    reasoning: {
+      effort: "low",
+    },
+    input: `${systemPrompt}\n\nContent: ${contentToProcess}`,
   };
 
-  // Enable web search if input is a URL
-  if (isUrl) {
-    console.error("Using web search mode (URL detected)");
-    apiConfig.tools = [{ type: "web_search_preview" }];
-  } else {
-    console.error("Using text processing mode");
-  }
+  console.error(
+    isUrl
+      ? "Processing URL content with GPT-5 Mini (low reasoning)"
+      : "Processing text with GPT-5 Mini (low reasoning)"
+  );
 
   const response = await openai.responses.create(apiConfig);
 
